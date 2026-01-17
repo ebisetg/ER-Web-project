@@ -125,7 +125,36 @@
             </div>
         </div>
        <div>
-        <button class="participate-btn">Participate</button>
+        <button class="participate-btn" id="participateBtn">Participate</button>
+       </div>
+       
+       <!-- Participate Popup Modal -->
+       <div class="participate-modal" id="participateModal">
+         <div class="modal-content">
+           <span class="close-modal" id="closeModal">&times;</span>
+           <h2>What would you like to participate in?</h2>
+           <form id="participateForm">
+             <label for="participateName">Name:</label>
+             <input type="text" id="participateName" name="participateName" placeholder="Enter your name" required />
+             
+             <label for="participateEmail">Email:</label>
+             <input type="email" id="participateEmail" name="participateEmail" placeholder="Enter your email" required />
+             
+             <label for="eventChoice">Select an event:</label>
+             <select id="eventChoice" name="eventChoice" required>
+               <option value="">-- Please select an event --</option>
+               <option value="football">Football Tournament</option>
+               <option value="art">Art Exhibition</option>
+               <option value="trips">Field Trips</option>
+               <option value="holiday">Holiday Celebrations</option>
+             </select>
+             <div class="modal-buttons">
+               <button type="submit">Submit</button>
+               <button type="button" id="cancelBtn">Cancel</button>
+             </div>
+             <div class="message" id="participate-message"></div>
+           </form>
+         </div>
        </div>
     <div class="donation-page" id="donation">
         <div class="donation-form">
@@ -146,6 +175,8 @@
                         <label for="bank">Wagagen Bank: 10000********</label>
                         <label for="photo">You can send us the screenshot of your transaction(optional).</label>
                         <input type="file" name="photo" id="photo" />
+                        <button type="submit">Submit</button>
+                        <div class="message" id="incash-message"></div>
                     </div>
                     <div class="inkind">
                         <label for="what" class="texts">What Kind? : </label>
@@ -159,7 +190,12 @@
                         <input type="checkbox" name="others" id="others" />
                         <label for="when">When?</label>
                         <input type="date" name="when" id="when" />
+                        <label for="cash-name">Your Name</label>
+                        <input type="text" id="cash-name" placeholder="Enter your name" />
+                        <label for="cash-phone">Phone Number</label>
+                        <input type="tel" id="cash-phone" placeholder="Enter your phone number" />
                         <button type="submit">Submit</button>
+                        <div class="message" id="inkind-message"></div>
                     </div>
                 </form>
             </div>
@@ -205,8 +241,6 @@
                 <div class="footer-bottom">
                     <p>&copy; 2025 EMforStreetChildren. All rights reserved.</p>
                     <p class="footer-links">
-                        <a href="#">Privacy Policy</a> | 
-                        <a href="#">Terms of Service</a> | 
                         <a href="#contact">Contact</a>
                     </p>
                 </div>
@@ -227,11 +261,13 @@
             <textarea id="comment" name="comment" rows="6" placeholder="We appreciate any suggestions and ideas!"></textarea>
             
             <button type="submit">Send Message</button>
+            <div class="message" id="contact-message"></div>
         </form>
     </div>
 </div>
 <div class="donate-popup" id="donatePopup">
-    <a href="donateNow.html" class="donate-btn">Donate Now</a>
+    <a href="#donation" class="donate-btn">Donate Now</a>
 </div>
+<script src="web.js"></script>
 </body>
 </html>

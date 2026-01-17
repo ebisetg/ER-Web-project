@@ -26,6 +26,10 @@ body {
   padding: 10px 10px;
   background-color: #327749;
 }
+
+.nav-item {
+  position: relative;
+}
 .logo {
   font-size: 30px;
   font-weight: 800;
@@ -38,6 +42,36 @@ body {
   list-style: none;
   font-size: large;
   margin-right: 20px;
+}
+
+/* Hamburger Menu Styles */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  padding: 5px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
 }
 .items li a {
   text-decoration: none;
@@ -601,6 +635,29 @@ button[type="submit"]:hover {
   background-color: #2a6540;
 }
 
+/* Message Styles */
+.message {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  display: none;
+}
+
+.message.success {
+  display: block;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.message.error {
+  display: block;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
 /* Responsive */
 @media (max-width: 780px) {
   .contact-container {
@@ -655,16 +712,194 @@ button[type="submit"]:hover {
 .donate-btn:hover {
   background-color: #2a6540;
 }
+
+/* Participate Modal Styles */
+.participate-modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s;
+}
+
+.participate-modal.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: slideDown 0.3s;
+}
+
+.modal-content h2 {
+  color: #327749;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.close-modal:hover {
+  color: #327749;
+}
+
+.modal-content label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="email"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+}
+
+.modal-content input[type="text"]:focus,
+.modal-content input[type="email"]:focus {
+  outline: none;
+  border-color: #327749;
+}
+
+.modal-content select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: white;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.modal-content select:focus {
+  outline: none;
+  border-color: #327749;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.modal-buttons button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-buttons button[type="submit"] {
+  background-color: #327749;
+  color: white;
+}
+
+.modal-buttons button[type="submit"]:hover {
+  background-color: #2a6540;
+}
+
+.modal-buttons button[type="button"] {
+  background-color: #6c757d;
+  color: white;
+}
+
+.modal-buttons button[type="button"]:hover {
+  background-color: #5a6268;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 /* < 560px: phones */
 @media (max-width: 559px) {
   .nav-bar {
     align-items: flex-start;
   }
 
+  .hamburger {
+    display: flex;
+  }
+
   .items {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #327749;
     flex-direction: column;
     gap: 10px;
     margin-right: 0;
+    padding: 20px;
+    border-top: 2px solid #000000;
+    box-sizing: border-box;
+  }
+
+  .items.active {
+    display: flex;
+  }
+
+  .items li {
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .items li a {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: ellipsis;
   }
 
   .slgn p {
@@ -696,8 +931,41 @@ button[type="submit"]:hover {
     padding: 10px 15px;
   }
 
+  .hamburger {
+    display: flex;
+  }
+
   .items {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #327749;
+    flex-direction: column;
     gap: 15px;
+    margin-right: 0;
+    padding: 20px;
+    border-top: 2px solid #000000;
+    box-sizing: border-box;
+  }
+
+  .items.active {
+    display: flex;
+  }
+
+  .items li {
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .items li a {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: ellipsis;
   }
 
   .slgn p {
