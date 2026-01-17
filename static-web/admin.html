@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - EM</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="admin-page">
+    <header class="admin-header">
+      <h1>Admin Dashboard</h1>
+    </header>
+
+    <nav class="admin-nav">
+      <button class="nav-btn active" data-tab="participants">Participants</button>
+      <button class="nav-btn" data-tab="incash">In-Cash</button>
+      <button class="nav-btn" data-tab="inkind">In-Kind</button>
+      <button class="nav-btn" data-tab="contact">Contact Messages</button>
+    </nav>
+  
+    <div class="admin-tab active" id="participants">
+      <div class="tab-header">
+        <h2>Participants</h2>
+        <input type="text" id="filter-event" placeholder="Filter by Event Type" class="filter-input" />
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Event Type</th>
+              <th>Date Submitted</th>
+            </tr>
+          </thead>
+          <tbody id="participants-body">
+            <tr>
+              <td colspan="5" class="no-data">No participants data available</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <div class="admin-tab" id="incash">
+      <div class="tab-header">
+        <h2>In-Cash Donations</h2>
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Screenshot</th>
+              <th>Date Submitted</th>
+            </tr>
+          </thead>
+          <tbody id="incash-body">
+            <tr>
+              <td colspan="3" class="no-data">No in-cash donations available</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <div class="admin-tab" id="inkind">
+      <div class="tab-header">
+        <h2>In-Kind Donations</h2>
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Date</th>
+              <th>Choices</th>
+              <th>Date Submitted</th>
+            </tr>
+          </thead>
+          <tbody id="inkind-body">
+            <tr>
+              <td colspan="7" class="no-data">No in-kind donations available</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <div class="admin-tab" id="contact">
+      <div class="tab-header">
+        <h2>Contact Messages</h2>
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Message</th>
+              <th>Date Submitted</th>
+            </tr>
+          </thead>
+          <tbody id="contact-body">
+            <tr>
+              <td colspan="5" class="no-data">No contact messages available</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+  </div>
+  <script src="admin.js"></script>
+</body>
+</html>
+  
