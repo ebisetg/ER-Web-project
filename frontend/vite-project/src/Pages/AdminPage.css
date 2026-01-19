@@ -1,0 +1,199 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
+  
+  /* Override root constraints for admin page */
+  #root:has(.admin-page) {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    text-align: left !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  body {
+    display: block !important;
+    font-family: Arial, sans-serif;
+    background: #327749;
+    color: #1f1f1f;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+  
+  /* Admin full page container */
+  .admin-page {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #327749;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: block;
+  }
+  
+  /* Header */
+  .admin-header {
+    color: white;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Nav buttons - aligned left to right */
+  .admin-nav {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 5px;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .navigation-button {
+    padding: 10px 15px;
+    cursor: pointer;
+    border: none;
+    background: #e6e7e7;
+    border-radius: 5px;
+    white-space: nowrap;
+  }
+  
+  .navigation-button.active {
+    background: #327749;
+    color: rgb(255, 255, 255);
+  }
+  
+  /* Tab container - spans full width */
+  .tab-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Tabs - spans full width */
+  .admin-tab {
+    display: none; /* Hidden by default */
+    background: white;
+    padding: 0;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .admin-tab.active {
+    display: block;
+  }
+  
+  /* Content inside tabs spans full width */
+  .admin-tab > div {
+    width: 100% !important;
+    padding: 15px;
+    box-sizing: border-box;
+    margin: 0;
+    display: block;
+  }
+  
+  .admin-tab h2 {
+    width: 100%;
+    margin-bottom: 15px;
+    margin-top: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Filter input - narrow width matching Participants heading */
+  .filter-input {
+    width: auto;
+    min-width: 200px;
+    max-width: 250px;
+    padding: 8px;
+    margin-bottom: 15px;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: block;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Table styling - spans full width */
+  table {
+    width: 100% !important;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    table-layout: auto;
+    box-sizing: border-box;
+    display: table;
+  }
+  
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+    word-wrap: break-word;
+    box-sizing: border-box;
+  }
+  
+  th {
+    background: #327749;
+    color: white;
+  }
+  
+  td {
+    background: #fdfdfd;
+  }
+  
+  /* Screenshot images */
+  .screenshot-img {
+    max-width: 100px;
+    cursor: pointer;
+  }
+  
+  /* Choice pills */
+  .choice-pill {
+    display: inline-block;
+    background: #327749;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
+  }
+  
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+  }
+  
