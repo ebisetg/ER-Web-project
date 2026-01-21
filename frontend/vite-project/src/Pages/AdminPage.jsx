@@ -30,7 +30,12 @@ function NavTabs({ activeTab, setActiveTab }) {
 }
 
 // --------------------- Table Component ---------------------
-function Table({ columns, data, renderRow, noDataMessage = "No data available" }) {
+function Table({
+  columns,
+  data,
+  renderRow,
+  noDataMessage = "No data available",
+}) {
   return (
     <table>
       <thead>
@@ -41,16 +46,15 @@ function Table({ columns, data, renderRow, noDataMessage = "No data available" }
         </tr>
       </thead>
       <tbody>
-        {data.length > 0
-          ? data.map((item, idx) => renderRow(item, idx))
-          : (
-            <tr>
-              <td colSpan={columns.length} style={{ textAlign: "center" }}>
-                {noDataMessage}
-              </td>
-            </tr>
-          )
-        }
+        {data.length > 0 ? (
+          data.map((item, idx) => renderRow(item, idx))
+        ) : (
+          <tr>
+            <td colSpan={columns.length} style={{ textAlign: "center" }}>
+              {noDataMessage}
+            </td>
+          </tr>
+        )}
       </tbody>
     </table>
   );
@@ -58,10 +62,10 @@ function Table({ columns, data, renderRow, noDataMessage = "No data available" }
 
 // --------------------- TabContent Component ---------------------
 function TabContent({ type, data, filterEvent, setFilterEvent, openModal }) {
-
+  if (!data) return <div>Loading...</div>;
   if (type === "participants") {
     const filtered = data.filter((p) =>
-      p.eventType.toLowerCase().includes(filterEvent.toLowerCase())
+      (p.event || "").toLowerCase().includes((filterEvent || "").toLowerCase())
     );
 
     return (
@@ -82,7 +86,7 @@ function TabContent({ type, data, filterEvent, setFilterEvent, openModal }) {
               <td>{idx + 1}</td>
               <td>{p.name}</td>
               <td>{p.email}</td>
-              <td>{p.eventType}</td>
+              <td>{p.event}</td>
               <td>{formatDate(p.dateSubmitted)}</td>
             </tr>
           )}
@@ -124,7 +128,15 @@ function TabContent({ type, data, filterEvent, setFilterEvent, openModal }) {
       <div>
         <h2>In-Kind Donations</h2>
         <Table
-          columns={["#", "Name","Email","Phone","Date","Choices","Date Submitted"]}
+          columns={[
+            "#",
+            "Name",
+            "Email",
+            "Phone",
+            "Date",
+            "Choices",
+            "Date Submitted",
+          ]}
           data={data}
           renderRow={(item, idx) => (
             <tr key={idx}>
@@ -134,9 +146,11 @@ function TabContent({ type, data, filterEvent, setFilterEvent, openModal }) {
               <td>{item.phone}</td>
               <td>{item.date}</td>
               <td>
-                {item.choices.map((c,i)=>
-                  <span key={i} className="choice-pill">{c}</span>
-                )}
+                {item.choices.map((c, i) => (
+                  <span key={i} className="choice-pill">
+                    {c}
+                  </span>
+                ))}
               </td>
               <td>{formatDate(item.dateSubmitted)}</td>
             </tr>
@@ -152,7 +166,7 @@ function TabContent({ type, data, filterEvent, setFilterEvent, openModal }) {
       <div>
         <h2>Contact Messages</h2>
         <Table
-          columns={["#", "Name","Email","Message","Date Submitted"]}
+          columns={["#", "Name", "Email", "Message", "Date Submitted"]}
           data={data}
           renderRow={(item, idx) => (
             <tr key={idx}>
@@ -174,7 +188,7 @@ function TabContent({ type, data, filterEvent, setFilterEvent, openModal }) {
 
 // --------------------- Modal Component ---------------------
 function Modal({ imageSrc, onClose }) {
-  if(!imageSrc) return null;
+  if (!imageSrc) return null;
   return (
     <div className="modal-overlay" onClick={onClose}>
       <img src={imageSrc} alt="Screenshot" className="modal-image" />
@@ -184,7 +198,7 @@ function Modal({ imageSrc, onClose }) {
 
 // --------------------- Helper ---------------------
 function formatDate(dateString) {
-  if(!dateString) return "N/A";
+  if (!dateString) return "N/A";
   const date = new Date(dateString);
   return date.toLocaleString();
 }
@@ -202,10 +216,10 @@ function AdminPage() {
   useEffect(() => {
     async function fetchData(endpoint, setter) {
       try {
-        const res = await fetch(`/api/${endpoint}`);
+        const res = await fetch(`http://localhost:5000/${endpoint}`);
         const data = await res.json();
         setter(data);
-      } catch(err) {
+      } catch (err) {
         console.error("Error fetching " + endpoint, err);
         setter([]);
       }
@@ -223,11 +237,24 @@ function AdminPage() {
       <NavTabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <div className="tab-container">
-        <div className={`admin-tab ${activeTab === "participants" ? "active" : ""}`}>
-          <TabContent type="participants" data={participantsData} filterEvent={filterEvent} setFilterEvent={setFilterEvent} />
+        <div
+          className={`admin-tab ${
+            activeTab === "participants" ? "active" : ""
+          }`}
+        >
+          <TabContent
+            type="participants"
+            data={participantsData}
+            filterEvent={filterEvent}
+            setFilterEvent={setFilterEvent}
+          />
         </div>
         <div className={`admin-tab ${activeTab === "incash" ? "active" : ""}`}>
-          <TabContent type="incash" data={incashData} openModal={setModalImage} />
+          <TabContent
+            type="incash"
+            data={incashData}
+            openModal={setModalImage}
+          />
         </div>
         <div className={`admin-tab ${activeTab === "inkind" ? "active" : ""}`}>
           <TabContent type="inkind" data={inkindData} />
@@ -243,6 +270,3 @@ function AdminPage() {
 }
 
 export default AdminPage;
-
-
-
