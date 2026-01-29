@@ -128,21 +128,12 @@ function TabContent({ type, data, filterEvent, setFilterEvent, openModal }) {
       <div>
         <h2>In-Kind Donations</h2>
         <Table
-          columns={[
-            "#",
-            "Name",
-            "Email",
-            "Phone",
-            "Date",
-            "Choices",
-            "Date Submitted",
-          ]}
+          columns={["#", "Name", "Phone", "Date", "Choices", "Date Submitted"]}
           data={data}
           renderRow={(item, idx) => (
             <tr key={idx}>
               <td>{idx + 1}</td>
               <td>{item.name}</td>
-              <td>{item.email}</td>
               <td>{item.phone}</td>
               <td>{item.date}</td>
               <td>
