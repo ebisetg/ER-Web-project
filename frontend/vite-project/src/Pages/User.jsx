@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./user.css";
 
-// Import all images
+// all images imported
 import bgImage from "../assets/images/bgimage.jpg";
 import aboutBg from "../assets/images/Screenshot_30-11-2025_11507_www.bing.com.jpeg";
 import homeImg from "../assets/images/home.jpg";
@@ -135,7 +135,7 @@ const User = () => {
       holiday: "Holiday Celebrations",
     };
 
-    // 2. ADD THE BACKEND CONNECTION HERE
+    // THE BACKEND CONNECTION
     try {
       const response = await fetch("http://localhost:5000/participants", {
         method: "POST", // Tells the server we are "Sending" data
@@ -309,7 +309,10 @@ const User = () => {
       const response = await fetch("http://localhost:5000/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...contactForm, dateSubmitted: new Date() }),
+        body: JSON.stringify({
+          ...contactForm,
+          dateSubmitted: new Date().toLocaleString(),
+        }),
       });
 
       if (response.ok) {
